@@ -756,13 +756,16 @@ abstract class S2State<T> extends State<SmartSelect<T>> {
   /// get default filter widget
   Widget get defaultModalFilter {
     return TextField(
-      autofocus: true,
       controller: filter.ctrl,
       style: modalHeaderStyle.textStyle,
       textInputAction: TextInputAction.search,
       decoration: InputDecoration.collapsed(
-        hintText: modalConfig.filterHint ?? 'Search on $title',
-        hintStyle: modalHeaderStyle.textStyle,
+        hintText: modalConfig.filterHint ?? 'Nhập để tìm kiếm ...',
+        hintStyle: TextStyle(
+          fontSize: 15,
+          color: Color(0xFF8A8A8A),
+          fontWeight: FontWeight.normal,
+        ),
       ),
       textAlign: modalConfig?.headerStyle?.centerTitle == true
         ? TextAlign.center
@@ -881,9 +884,9 @@ abstract class S2State<T> extends State<SmartSelect<T>> {
       actionsIconTheme: modalHeaderStyle.actionsIconTheme,
       iconTheme: modalHeaderStyle.iconTheme,
       centerTitle: modalHeaderStyle.centerTitle,
-      automaticallyImplyLeading: modalConfig.type == S2ModalType.fullPage || filter.activated,
-      leading: filter.activated ? Icon(Icons.search) : null,
-      title: filter.activated == true
+      // automaticallyImplyLeading: modalConfig.type == S2ModalType.fullPage || filter.activated,
+      // leading: filter.activated ? Icon(Icons.search) : null,
+      title: modalConfig.useFilter == true
         ? modalFilter
         : Column(
             mainAxisSize: MainAxisSize.max,
